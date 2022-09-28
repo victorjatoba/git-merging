@@ -103,3 +103,17 @@ git merge --squash main
 git commit -m "s3 merge squash"
 git log --oneline
 ```
+
+```fs
+157f993 (HEAD -> subsystem) s3 merge squash
+68672f9 (origin/subsystem) s2
+b6c59c9 s1
+b84f763 m2
+a9fa694 m1
+8563cc8 Initial commit
+```
+
+### Conclusion
+
+- Add one more commit
+- Squashed m3 and m4 commits
