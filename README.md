@@ -94,3 +94,12 @@ a9fa694 m1
 - The hash's doesn't modified.
 - Add one more commit.
 - Keep the commits sequence.
+
+## MERGE SQUASH
+
+```sh
+git checkout subsystem
+git merge --squash main
+git commit -m "s3 merge squash"
+git log --oneline
+```
