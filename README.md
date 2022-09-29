@@ -49,12 +49,13 @@ a9fa694 m1
 ```sh
 git checkout subsystem
 git rebase main
-git log --oneline
 ```
 
 console result:
 
 ```fs
+git log --oneline
+
 358be3b (HEAD -> subsystem) s2
 6dfe7c9 s1
 2fee1bb (main) m4
@@ -64,9 +65,15 @@ a9fa694 m1
 8563cc8 Initial commit
 ```
 
+```fs
+m0---m1---m2---m3'---m4'  (main)
+                      \
+                       s1'---s2'  (subsystem)
+```
+
 ### Conclusion
 
-- The commits' hash from subsystem branch was modified after rebase. For example, the "s1" commit changed from `b6c59c9` to `6dfe7c9`.
+- The commits' hash: s1, s2, m3 and m4 was modified. For example, the "s1" commit changed from `b6c59c9` to `6dfe7c9` and "m3" changed from `53a50b6` to `202369c`.
 - subystem's commits go to final (HEAD)
 
 ## MERGE
@@ -75,10 +82,11 @@ a9fa694 m1
 git checkout subsystem
 git merge main
 git commit -m "s3 merge"
-git log --oneline
 ```
 
 ```fs
+git log --oneline
+
 d51d8af (HEAD -> subsystem) s3 merge
 c178ff2 (origin/main, origin/HEAD, main) m4
 53a50b6 m3
@@ -89,11 +97,19 @@ a9fa694 m1
 8563cc8 Initial commit
 ```
 
+```fs
+m0---m1---m2---m3---m4  (main)
+           \    \    \
+            s1   \    \
+             \    \    \
+              s2---m3---m4---M  (subsystem)
+```
+
 ### Conclusion
 
 - The hash's doesn't modified.
-- Add one more commit.
-- Keep the commits sequence.
+- Added one more commit.
+- Keep the commits' sequence.
 
 ## MERGE SQUASH
 
@@ -101,10 +117,11 @@ a9fa694 m1
 git checkout subsystem
 git merge --squash main
 git commit -m "s3 merge squash"
-git log --oneline
 ```
 
 ```fs
+git log --oneline
+
 157f993 (HEAD -> subsystem) s3 merge squash
 68672f9 (origin/subsystem) s2
 b6c59c9 s1
@@ -113,7 +130,14 @@ a9fa694 m1
 8563cc8 Initial commit
 ```
 
+```fs
+m0---m1---m2---m3---m4  (main)
+           \
+            s1---s2---M  (subsystem)
+```
+
 ### Conclusion
 
-- Add one more commit
-- Squashed m3 and m4 commits
+- Add one more commit (M) with the m3 and m4 alterations
+- m3 and m4 commits went out.
+- The subsystem's hash doesn't modified.
