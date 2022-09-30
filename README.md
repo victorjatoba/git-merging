@@ -66,9 +66,11 @@ a9fa694 m1
 ```
 
 ```fs
-m0---m1---m2---m3'---m4'  (main)
-                      \
-                       s1'---s2'  (subsystem)
+m0---m1---m2---m3---m4  (main)
+           \     \    \
+            s1'   \    \
+             \     \    \
+              s2'---m3'---m4'  (subsystem)
 ```
 
 ### Conclusion
@@ -208,4 +210,12 @@ c178ff2 (origin/main, origin/HEAD, main) m4
 b84f763 m2
 a9fa694 m1
 8563cc8 Initial commit
+```
+
+```fs
+m0---m1---m2---m3---m4  (main)
+                     \
+                      s1'---s2'  (subsystem)
+                             \
+                              t1'---t2'  (topic)
 ```
