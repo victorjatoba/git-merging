@@ -130,8 +130,10 @@ a9fa694 m1
 
 ```fs
 m0---m1---m2---m3---m4  (main)
-           \
-            s1---s2---M  (subsystem)
+          |      \  /
+          |       \/ "squashed"
+          |        \
+          s1---s2---M  (subsystem)
 ```
 
 ### Conclusion
