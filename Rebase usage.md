@@ -102,6 +102,16 @@ c18d4c4 s1
 
 ![rebase](./rebase.png)
 
+```sh
+git push
+
+To github.com:victorjatoba/git-merging-rebase.git
+ ! [rejected]        topic -> topic (non-fast-forward)
+error: failed to push some refs to 'github.com:victorjatoba/git-merging-rebase.git'
+```
+
+`git push -f`
+
 ## --keep-base
 
 ### Citation
