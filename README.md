@@ -141,3 +141,71 @@ m0---m1---m2---m3---m4  (main)
 - Add one more commit (M) with the m3 and m4 alterations
 - m3 and m4 commits went out.
 - The subsystem's hash doesn't modified.
+
+### REBASE --ONTO
+
+```sh
+git checkout subsystem
+```
+
+```fs
+git log --oneline
+
+68672f9 (HEAD -> subsystem, origin/subsystem) s2
+b6c59c9 s1
+b84f763 m2
+a9fa694 m1
+8563cc8 Initial commit
+```
+
+`68672f9` (the last commit SHA1 in the pre-rebase)
+
+```sh
+git rebase main
+```
+
+```fs
+git log --oneline
+
+9654a37 (HEAD -> subsystem) s2
+ec2e35b s1
+c178ff2 (origin/main, origin/HEAD, main) m4
+53a50b6 m3
+b84f763 m2
+a9fa694 m1
+8563cc8 Initial commit
+```
+
+```sh
+git checkout topic
+```
+
+```fs
+git log --oneline
+
+cae1fc4 (HEAD -> topic, origin/topic) t2
+7757880 t1
+68672f9 (origin/subsystem) s2
+b6c59c9 s1
+b84f763 m2
+a9fa694 m1
+8563cc8 Initial commit
+```
+
+```sh
+git rebase --onto subsystem 68672f9 topic
+```
+
+```fs
+git log --oneline
+
+d7e12d4 (HEAD -> topic) t2
+4a7b3c8 t1
+9654a37 (subsystem) s2
+ec2e35b s1
+c178ff2 (origin/main, origin/HEAD, main) m4
+53a50b6 m3
+b84f763 m2
+a9fa694 m1
+8563cc8 Initial commit
+```
