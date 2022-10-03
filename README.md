@@ -274,8 +274,36 @@ m0---m1---m2---m3---m4  (main)
                               t1''---t2''  (topic)
 ```
 
-![rebase 2](./images/rebase2.png)
+![rebase 1](./images/rebase2.png)
 
 Na PR (subsystem <- topic) foi feito um Merge para subsystem 
 
 ![MS1](./images/MS1.png)
+
+git checkout topic
+criei o commit t3
+git push
+
+ed3b65e (HEAD -> topic, origin/topic) t3
+abfc28a t2
+36fb52b t1
+1871f8f (origin/subsystem, subsystem) s3
+14c0a58 s2
+447880b s1
+c178ff2 (origin/main, origin/HEAD, main) m4
+53a50b6 m3
+b84f763 m2
+a9fa694 m1
+8563cc8 Initial commit
+
+```fs
+m0---m1---m2---m3---m4  (main)
+                     \
+                      s1'---s2'---t1''---t2''  (subsystem)
+                                          \
+                                           t3  (topic)
+```
+
+Feito PR subsystem <- topic
+
+![PR 2 subsystem <- topic](./images/PR2sub-top.png)
