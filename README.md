@@ -274,4 +274,8 @@ m0---m1---m2---m3---m4  (main)
                               t1''---t2''  (topic)
 ```
 
-![rebase 1](./images/rebase2.png)
+![rebase 2](./images/rebase2.png)
+
+Na PR (subsystem <- topic) foi feito um Merge para subsystem 
+
+![MS1](./images/MS1.png)
