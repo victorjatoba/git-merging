@@ -307,3 +307,50 @@ m0---m1---m2---m3---m4  (main)
 Feito PR subsystem <- topic
 
 ![PR 2 subsystem <- topic](./images/PR2sub-top.png)
+
+git checkout subsystem
+git pull
+
+```
+e3deb43 (HEAD -> subsystem, origin/subsystem) MS1
+abfc28a t2
+36fb52b t1
+1871f8f s3
+14c0a58 s2
+447880b s1
+c178ff2 (origin/main, origin/HEAD, main) m4
+53a50b6 m3
+b84f763 m2
+a9fa694 m1
+8563cc8 Initial commit
+```
+
+No PR 2 subsystem <- topic fazer REBASE AND MERGE
+
+![Rebase and Merge 1](./images/rebaseAndMerge1.png)
+
+git checkout subsystem
+git pull
+
+```
+8b8893b (HEAD -> subsystem, origin/subsystem) t3
+e3deb43 MS1
+abfc28a t2
+36fb52b t1
+1871f8f s3
+14c0a58 s2
+447880b s1
+c178ff2 (origin/main, origin/HEAD, main) m4
+53a50b6 m3
+b84f763 m2
+a9fa694 m1
+8563cc8 Initial commit
+```
+
+```fs
+m0---m1---m2---m3---m4  (main)
+                     \
+                      s1'---s2'---t1''---t2''---MS1---t3'  (subsystem)
+                                          \
+                                           t3  (topic)
+```
