@@ -176,6 +176,14 @@ a9fa694 m1
 8563cc8 Initial commit
 ```
 
+```fs
+m0---m1---m2---m3---m4  (main)
+           \         \
+            s1---s2   s1'---s2' (subsystem)
+                  \
+                   t1---t2  (topic)
+```
+
 ```sh
 git checkout topic
 ```

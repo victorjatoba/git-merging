@@ -1,7 +1,7 @@
 # REBASE --onto
 
---onto <newbase>
-Starting point at which to create the new commits. If the --onto option is not specified, the starting point is <upstream>. May be any valid commit, and not just an existing branch name. [Citation](https://git-scm.com/docs/git-rebase#Documentation/git-rebase.txt---ontoltnewbasegt)
+"--onto `<newbase>`
+Starting point at which to create the new commits. If the --onto option is not specified, the starting point is `<upstream>`. May be any valid commit, and not just an existing branch name." [(Git docs, 2022)](https://git-scm.com/docs/git-rebase#Documentation/git-rebase.txt---ontoltnewbasegt)
 
 ## Transplant
 
@@ -59,9 +59,8 @@ m0---m1---m2---m3---m4  (main)
                               t1---t2  (topic)
 ```
 
-fb5c436 s2
-a66a5fe s1
-
+`fb5c436` s2  
+`a66a5fe` s1
 
 ```sh
 git rebase --onto subsystem a66a5fe topic
@@ -123,6 +122,10 @@ Upstream branch to compare against. May be any valid commit, not just an existin
 
 `<branch>`
 Working branch; defaults to HEAD.
+
+## Good practices
+
+https://www.atlassian.com/git/tutorials/merging-vs-rebasing#the-golden-rule-of-rebasing
 
 ## Reference
 
