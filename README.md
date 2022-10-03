@@ -354,3 +354,9 @@ m0---m1---m2---m3---m4  (main)
                                           \
                                            t3  (topic)
 ```
+
+Feito PR subsystem <- topic
+
+O PR apresentou o t3 como commit a ser mesclado (merged) porém a alteração file10 já está na branch subsystem, com o t3'
+
+![PR t3](./images/PRt3.png)
