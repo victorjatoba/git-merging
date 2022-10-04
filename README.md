@@ -158,7 +158,9 @@ a9fa694 m1
 8563cc8 Initial commit
 ```
 
-`68672f9` (the last commit SHA1 in the pre-rebase)
+> `68672f9` (the last commit SHA1 in the pre-rebase)
+
+### Rebase para main
 
 ```sh
 git rebase main
@@ -167,15 +169,6 @@ git rebase main
 ```fs
 git log --oneline
 
-9654a37 (HEAD -> subsystem) s2
-ec2e35b s1
-c178ff2 (origin/main, origin/HEAD, main) m4
-53a50b6 m3
-b84f763 m2
-a9fa694 m1
-8563cc8 Initial commit
-```
-
 14c0a58 (HEAD -> subsystem, origin/subsystem) s2
 447880b s1
 c178ff2 (origin/main, origin/HEAD, main) m4
@@ -183,6 +176,7 @@ c178ff2 (origin/main, origin/HEAD, main) m4
 b84f763 m2
 a9fa694 m1
 8563cc8 Initial commit
+```
 
 ```fs
 m0---m1---m2---m3---m4  (main)
@@ -191,6 +185,10 @@ m0---m1---m2---m3---m4  (main)
                   \
                    t1---t2  (topic)
 ```
+
+![rebase 1](./images/rebase0.png)
+
+### Rebase --onto referenciando o commit s2
 
 ```sh
 git checkout topic
@@ -234,12 +232,23 @@ m0---m1---m2---m3---m4  (main)
                               t1'---t2'  (topic)
 ```
 
+PR para o substystem
 ![rebase 1](./images/rebase1.png)
 
+Antes e depois
+![rebase 1](./images/rebase_compair0-1.png)
+
+### Rebase normal
+
+```sh
 git checkout subsystem
-criou o commit s3
+Criei o commit s3
+git push
+```
 
 ```fs
+git log --oneline
+
 1871f8f (HEAD -> subsystem, origin/subsystem) s3
 14c0a58 s2
 447880b s1
@@ -250,10 +259,22 @@ a9fa694 m1
 8563cc8 Initial commit
 ```
 
+```fs
+m0---m1---m2---m3---m4  (main)
+                     \
+                      s1'---s2'---s3  (subsystem)
+                             \
+                              t1'---t2'  (topic)
+```
+
+```sh
 git checkout topic
 git rebase subsystem
+```
 
 ```fs
+git log --oneline
+
 abfc28a (HEAD -> topic) t2
 36fb52b t1
 1871f8f (origin/subsystem, subsystem) s3
@@ -269,49 +290,29 @@ a9fa694 m1
 ```fs
 m0---m1---m2---m3---m4  (main)
                      \
-                      s1'---s2'  (subsystem)
-                             \
-                              t1''---t2''  (topic)
+                      s1'---s2'---s3  (subsystem)
+                                   \
+                                    t1''---t2''  (topic)
 ```
 
+No PR abaixo, percebe-se que os commits t1 e t2 mudaram o hash
 ![rebase 1](./images/rebase2.png)
 
-Na PR (subsystem <- topic) foi feito um Merge para subsystem 
+### Merge
+
+- No PR (subsystem <- topic) foi feito um Merge para subsystem
+- O commit do merge foi nomeado de forma ilustrativa como MS1
 
 ![MS1](./images/MS1.png)
 
-git checkout topic
-criei o commit t3
-git push
-
-ed3b65e (HEAD -> topic, origin/topic) t3
-abfc28a t2
-36fb52b t1
-1871f8f (origin/subsystem, subsystem) s3
-14c0a58 s2
-447880b s1
-c178ff2 (origin/main, origin/HEAD, main) m4
-53a50b6 m3
-b84f763 m2
-a9fa694 m1
-8563cc8 Initial commit
-
-```fs
-m0---m1---m2---m3---m4  (main)
-                     \
-                      s1'---s2'---t1''---t2''  (subsystem)
-                                          \
-                                           t3  (topic)
-```
-
-Feito PR subsystem <- topic
-
-![PR 2 subsystem <- topic](./images/PR2sub-top.png)
-
+```sh
 git checkout subsystem
 git pull
-
 ```
+
+```sh
+git log --oneline
+
 e3deb43 (HEAD -> subsystem, origin/subsystem) MS1
 abfc28a t2
 36fb52b t1
@@ -325,14 +326,63 @@ a9fa694 m1
 8563cc8 Initial commit
 ```
 
-No PR 2 subsystem <- topic fazer REBASE AND MERGE
+```fs
+m0---m1---m2---m3---m4  (main)
+                     \
+                      s1'---s2'---s3---t1''---t2''---MS1  (subsystem)
+                             \
+                              t1''---t2''  (topic)
+```
+
+### REBASE AND MERGE
+
+```sh
+git checkout topic
+criei o commit t3
+git push
+```
+
+```sh
+git log --oneline
+
+ed3b65e (HEAD -> topic, origin/topic) t3
+abfc28a t2
+36fb52b t1
+1871f8f (origin/subsystem, subsystem) s3
+14c0a58 s2
+447880b s1
+c178ff2 (origin/main, origin/HEAD, main) m4
+53a50b6 m3
+b84f763 m2
+a9fa694 m1
+8563cc8 Initial commit
+```
+
+```fs
+m0---m1---m2---m3---m4  (main)
+                     \
+                      s1'---s2'---s3---t1''---t2''---MS1  (subsystem)
+                             \
+                              t1''---t2''---t3  (topic)
+```
+
+- Feito PR subsystem <- topic
+- Apenas t3 divergindo
+
+![PR 2 subsystem <- topic](./images/PR2sub-top.png)
+
+- No PR 2 subsystem <- topic foi feito um "REBASE AND MERGE" ao invés de apenas "Merge"
 
 ![Rebase and Merge 1](./images/rebaseAndMerge1.png)
 
+```sh
 git checkout subsystem
 git pull
+```
 
 ```
+git log --oneline
+
 8b8893b (HEAD -> subsystem, origin/subsystem) t3
 e3deb43 MS1
 abfc28a t2
@@ -350,13 +400,12 @@ a9fa694 m1
 ```fs
 m0---m1---m2---m3---m4  (main)
                      \
-                      s1'---s2'---t1''---t2''---MS1---t3'  (subsystem)
-                                          \
-                                           t3  (topic)
+                      s1'---s2'---s3---t1''---t2''---MS1---t3'  (subsystem)
+                             \
+                              t1''---t2''---t3  (topic)
 ```
 
-Feito PR subsystem <- topic
-
-O PR apresentou o t3 como commit a ser mesclado (merged) porém a alteração file10 já está na branch subsystem, com o t3'
+- Feito PR subsystem <- topic
+- O PR apresentou o t3 como commit a ser mesclado (merged) porém a alteração file10 já está na branch subsystem, com o t3'
 
 ![PR t3](./images/PRt3.png)
