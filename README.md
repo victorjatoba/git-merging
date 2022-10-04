@@ -373,6 +373,8 @@ m0---m1---m2---m3---m4  (main)
 
 - No PR 2 subsystem <- topic foi feito um "REBASE AND MERGE" ao invés de apenas "Merge"
 
+![Rebase and Merge option](./images/rebase-and-merge.png)
+
 ![Rebase and Merge 1](./images/rebaseAndMerge1.png)
 
 ```sh
