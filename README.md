@@ -409,3 +409,11 @@ m0---m1---m2---m3---m4  (main)
 - O PR apresentou o t3 como commit a ser mesclado (merged) porém a alteração file10 já está na branch subsystem, com o t3'
 
 ![PR t3](./images/PRt3.png)
+
+## Good practices
+
+"The golden rule of git rebase is to never use it on public branches." [Atlassian, 2022](https://www.atlassian.com/git/tutorials/merging-vs-rebasing#the-golden-rule-of-rebasing)
+
+## Reference
+
+[Git official documentation](https://git-scm.com/docs/git-rebase)
