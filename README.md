@@ -426,5 +426,9 @@ git checkout feature git rebase -i HEAD~3
 
 ## Reference
 
-[Git official documentation](https://git-scm.com/docs/git-rebase)
-[Atlassian Bitbucket](https://www.atlassian.com/git/tutorials/merging-vs-rebasing#the-golden-rule-of-rebasing)
+- [Git official documentation](https://git-scm.com/docs/git-rebase)
+- [Atlassian Bitbucket](https://www.atlassian.com/git/tutorials/merging-vs-rebasing#the-golden-rule-of-rebasing)
+
+## Merge squash vice-versa
+
+Fazer merge squash do subystem para main e vice-versa
