@@ -414,6 +414,15 @@ m0---m1---m2---m3---m4  (main)
 
 "The golden rule of git rebase is to never use it on public branches." [Atlassian, 2022](https://www.atlassian.com/git/tutorials/merging-vs-rebasing#the-golden-rule-of-rebasing)
 
+## rebase only some commmits
+
+```sh
+git checkout feature git rebase -i HEAD~3
+```
+
+![Rebasing into HEAD~3](./images/rebasing-into-head-3.svg)
+
 ## Reference
 
 [Git official documentation](https://git-scm.com/docs/git-rebase)
+[Atlassian Bitbucket](https://www.atlassian.com/git/tutorials/merging-vs-rebasing#the-golden-rule-of-rebasing)
