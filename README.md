@@ -432,3 +432,126 @@ git checkout feature git rebase -i HEAD~3
 ## Merge squash vice-versa
 
 Fazer merge squash do subystem para main e vice-versa
+
+```sh
+git checkout subsystem
+```
+
+```sh
+git log --oneline
+
+8b8893b (HEAD -> subsystem, origin/subsystem) t3
+e3deb43 MS1
+abfc28a t2
+36fb52b t1
+1871f8f s3
+14c0a58 s2
+447880b s1
+c178ff2 (origin/main, origin/HEAD, main) m4
+53a50b6 m3
+b84f763 m2
+a9fa694 m1
+8563cc8 Initial commit
+```
+
+```sh
+git checkout main
+```
+
+```sh
+git log --oneline
+
+c178ff2 (HEAD -> main, origin/main, origin/HEAD) m4
+53a50b6 m3
+b84f763 m2
+a9fa694 m1
+8563cc8 Initial commit
+```
+
+```fs
+m0---m1---m2---m3---m4  (main)
+                     \
+                      s1'---s2'---s3---t1''---t2''---MS1---t3'  (subsystem)
+```
+
+- Foi criado um PR da subsystem para a main (main < subsystem)
+
+![PR main < subsystem before squash](./images/beforeSquashPRMainSub.png)
+
+### merge (main < subsystem)
+
+```sh
+$ git checkout main
+$ git merge --squash subsystem
+
+Updating c178ff2..8b8893b
+Fast-forward
+Squash commit -- not updating HEAD
+ file10 | 0
+ file3  | 0
+ file4  | 0
+ file5  | 0
+ file6  | 0
+ file9  | 0
+ 6 files changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 file10
+ create mode 100644 file3
+ create mode 100644 file4
+ create mode 100644 file5
+ create mode 100644 file6
+ create mode 100644 file9
+```
+
+```sh
+git commit -m "MMS1"
+git push
+```
+
+```sh
+git log --oneline
+
+3611528 (HEAD -> main, origin/main, origin/HEAD) MMS1
+c178ff2 m4
+53a50b6 m3
+b84f763 m2
+a9fa694 m1
+8563cc8 Initial commit
+```
+
+```fs
+m0---m1---m2---m3---m4---MMS1  (main)
+                     \
+                      s1'---s2'---s3---t1''---t2''---MS1---t3'  (subsystem)
+```
+
+- O PR não teve alteração
+- Feito o Merge and Squash pela interface gráfica
+
+![Merge and Squash feito pela interface do Github](./images/mergeAndSquashGithubInterface.png)
+
+![Feito Squash and Merge](./images/MergeAndSquashPRDoneByInterface.png)
+
+```sh
+git pull
+git log --oneline
+
+c0fcb1b (HEAD -> main, origin/main, origin/HEAD) MMS2 via interface
+3611528 MMS1
+c178ff2 m4
+53a50b6 m3
+b84f763 m2
+a9fa694 m1
+8563cc8 Initial commit
+```
+
+```fs
+m0---m1---m2---m3---m4---MMS1---MMS2  (main)
+                     \
+                      s1'---s2'---s3---t1''---t2''---MS1---t3'  (subsystem)
+```
+
+### merge (subsystem < main)
+
+- Ao tentar fazer PR da main para a subsystem, a opção ficou desabilitada
+
+![PR de opção bloqueada](./images/prOptionBlocked.png)
