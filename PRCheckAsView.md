@@ -79,6 +79,6 @@ m0---m1---m2---t1  (main)
 
 ![file1 checked](./images/check_review3.png)
 
-- fil1 desaparece da aba "Files changed"
+- file1 desaparece da aba "Files changed"
 
 ![file1 checked](./images/check_review4.png)
